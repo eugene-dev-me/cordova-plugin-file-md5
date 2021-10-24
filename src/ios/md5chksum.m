@@ -47,8 +47,6 @@
                 NSUInteger size = [assetRepresentation size];
                 Byte* buffer = (Byte*)malloc(size);
 
-//                NSUInteger bufferSize = [assetRepresentation getBytes:buffer fromOffset:start length:size error:nil];
-
                 CC_MD5_CTX md5;
                 CC_MD5_Init(&md5);
                 BOOL done = NO;
@@ -65,6 +63,8 @@
                         if( [data length] == 0 ) done = YES;
                     }
                 }
+
+                free(buffer);
 
                 unsigned char digest[CC_MD5_DIGEST_LENGTH];
                 CC_MD5_Final(digest, &md5);
